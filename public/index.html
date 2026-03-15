@@ -10,10 +10,8 @@
   <meta property="og:image" content="/poster.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -35,7 +33,7 @@
       background-blend-mode: multiply;
       min-height: 100vh;
       position: relative;
-      padding: 0 0 12px;
+      padding-bottom: 12px;
     }
 
     /* ==================== POSTER ==================== */
@@ -50,16 +48,16 @@
       display: block;
     }
 
-    /* YouTube-style play button */
+    /* Play button — positioned at center-bottom of poster, over TATRAN text */
     .play-btn {
       position: absolute;
-      top: 50%;
+      top: 56%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 68px;
-      height: 48px;
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 14px;
+      width: 62px;
+      height: 44px;
+      background: rgba(0, 0, 0, 0.78);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -72,24 +70,25 @@
       width: 0;
       height: 0;
       border-style: solid;
-      border-width: 10px 0 10px 18px;
+      border-width: 9px 0 9px 16px;
       border-color: transparent transparent transparent #fff;
       margin-left: 3px;
     }
 
     /* ==================== CTA CARD ==================== */
     .cta-outer {
-      margin: 12px 24px 0;
+      margin: 10px 24px 0;
       padding: 3px;
       background: linear-gradient(
-        135deg,
-        rgba(135, 160, 220, 0.8) 0%,
-        rgba(200, 140, 200, 0.7) 18%,
-        rgba(255, 180, 120, 0.6) 35%,
-        rgba(135, 180, 230, 0.7) 52%,
-        rgba(200, 120, 180, 0.8) 70%,
-        rgba(140, 200, 230, 0.7) 88%,
-        rgba(135, 160, 220, 0.8) 100%
+        160deg,
+        rgba(100, 130, 200, 0.5) 0%,
+        rgba(180, 120, 200, 0.45) 15%,
+        rgba(220, 170, 120, 0.4) 30%,
+        rgba(100, 160, 220, 0.45) 45%,
+        rgba(200, 100, 160, 0.5) 60%,
+        rgba(120, 190, 220, 0.45) 75%,
+        rgba(180, 140, 200, 0.4) 90%,
+        rgba(100, 130, 200, 0.5) 100%
       );
       background-size: 400% 400%;
       animation: shimmer 8s ease infinite;
@@ -106,32 +105,30 @@
       background-image: url('/texture-tile.jpg');
       background-size: cover;
       background-blend-mode: multiply;
-      padding: 32px 32px 28px;
+      padding: 30px 30px 26px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 28px;
     }
 
     /* Left column */
-    .cta-left {}
-
     .cta-heading {
-      font-family: 'Bebas Neue', 'Space Grotesk', sans-serif;
-      font-size: 42px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 46px;
       font-weight: 400;
-      line-height: 0.95;
+      line-height: 0.92;
       text-transform: uppercase;
       color: #f25c45;
-      letter-spacing: 0.02em;
-      margin-bottom: 18px;
+      letter-spacing: 0.015em;
+      margin-bottom: 16px;
     }
 
     .cta-desc {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
-      line-height: 1.5;
+      line-height: 1.55;
       text-transform: uppercase;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.005em;
       color: #1a1a2e;
     }
 
@@ -139,11 +136,11 @@
     .cta-right {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .price-label {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       text-transform: uppercase;
       color: #1a1a2e;
@@ -151,15 +148,15 @@
 
     .price-label .note {
       font-weight: 400;
-      font-size: 11px;
+      font-size: 10.5px;
       opacity: 0.5;
     }
 
-    /* Slider */
+    /* Slider row */
     .slider-row {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .price-slider {
@@ -195,12 +192,9 @@
 
     .price-box {
       width: 50px;
-      height: 34px;
-      border: 2px solid #2a2a3e;
+      height: 32px;
+      border: 2px solid #1a1a2e;
       border-radius: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 14px;
       font-weight: 700;
       color: #1a1a2e;
@@ -208,28 +202,28 @@
       font-family: inherit;
       text-align: center;
       outline: none;
+      -moz-appearance: textfield;
     }
 
     .price-box::-webkit-inner-spin-button,
     .price-box::-webkit-outer-spin-button { -webkit-appearance: none; }
-    .price-box { -moz-appearance: textfield; }
 
     /* CTA Button */
     .cta-btn {
       width: 100%;
-      padding: 16px 12px;
+      padding: 14px 10px;
       background: transparent;
       border: 2.5px solid #f25c45;
       color: #f25c45;
-      font-family: 'Bebas Neue', 'Space Grotesk', sans-serif;
-      font-size: 20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
       font-weight: 400;
       text-transform: uppercase;
       text-align: center;
       letter-spacing: 0.04em;
       cursor: pointer;
       transition: all 0.2s;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .cta-btn:hover {
@@ -237,9 +231,7 @@
       color: #fff;
     }
 
-    .cta-btn:active {
-      transform: scale(0.97);
-    }
+    .cta-btn:active { transform: scale(0.97); }
 
     .cta-btn:disabled {
       opacity: 0.5;
@@ -247,40 +239,38 @@
     }
 
     .support-text {
-      font-size: 12px;
+      font-size: 11.5px;
       color: #1a1a2e;
       opacity: 0.5;
     }
 
-    /* Payment icons row */
+    /* Payment methods — SVG icons */
     .pay-methods {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-top: 2px;
+      gap: 10px;
+      margin-top: 4px;
     }
 
-    .pay-methods span {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      opacity: 0.35;
-      letter-spacing: 0.03em;
+    .pay-methods svg {
+      height: 18px;
+      width: auto;
+      opacity: 0.4;
     }
 
     /* ==================== FOOTER ==================== */
     .footer {
-      padding: 20px 24px 16px;
+      padding: 18px 24px 14px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
-      font-size: 11px;
+      gap: 8px;
+      font-size: 10.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       color: #1a1a2e;
-      opacity: 0.35;
+      opacity: 0.3;
     }
 
     .footer .sep { opacity: 0.5; }
@@ -288,35 +278,28 @@
     /* ==================== MOBILE ==================== */
     @media (max-width: 580px) {
       .poster-wrap { padding: 16px 16px 0; }
-
       .cta-outer { margin: 8px 16px 0; }
-
       .cta-card {
         grid-template-columns: 1fr;
         gap: 20px;
         padding: 24px 22px 22px;
       }
-
-      .cta-heading { font-size: 36px; }
-
-      .footer { font-size: 10px; gap: 6px; }
+      .cta-heading { font-size: 38px; }
+      .footer { font-size: 9.5px; gap: 5px; }
     }
   </style>
 </head>
 <body>
   <div class="page">
 
-    <!-- Poster with play button -->
     <div class="poster-wrap">
       <img class="poster-img" src="/poster.jpg" alt="TATRAN — Evermore Album Launch, Live at Barby Tel Aviv, July 4th 2024" />
       <div class="play-btn"></div>
     </div>
 
-    <!-- CTA Card -->
     <div class="cta-outer">
       <div class="cta-card">
 
-        <!-- Left: heading + description -->
         <div class="cta-left">
           <div class="cta-heading">Full Concert<br>Film Access</div>
           <div class="cta-desc">
@@ -325,13 +308,12 @@
           </div>
         </div>
 
-        <!-- Right: price + slider + button -->
         <div class="cta-right">
           <div class="price-label">Price: $<span id="priceText">3.00</span> USD <span class="note">(Pay More Option Below)</span></div>
 
           <div class="slider-row">
             <input type="range" class="price-slider" id="priceSlider" min="3" max="50" value="3" step="1">
-            <input type="number" class="price-box" id="priceInput" value="3" min="3">
+            <input type="text" class="price-box" id="priceInput" value="$3">
           </div>
 
           <button class="cta-btn" id="payBtn" onclick="checkout()">
@@ -341,17 +323,30 @@
           <div class="support-text">Pay $3 or more to support the band.</div>
 
           <div class="pay-methods">
-            <span>VISA</span>
-            <span>Mastercard</span>
-            <span>Apple Pay</span>
-            <span>G Pay</span>
+            <!-- Visa -->
+            <svg viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="Arial,sans-serif" font-weight="bold" font-size="13" fill="#1a1a2e">VISA</text>
+            </svg>
+            <!-- Mastercard -->
+            <svg viewBox="0 0 30 18" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="9" r="8" fill="#1a1a2e" opacity="0.7"/>
+              <circle cx="20" cy="9" r="8" fill="#1a1a2e" opacity="0.5"/>
+            </svg>
+            <!-- Apple Pay -->
+            <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="13" font-family="system-ui,sans-serif" font-size="11" fill="#1a1a2e"><tspan font-family="system-ui" font-weight="400">&#xF8FF;</tspan>Pay</text>
+            </svg>
+            <!-- Google Pay -->
+            <svg viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <text x="0" y="14" font-family="Arial,sans-serif" font-weight="bold" font-size="13" fill="#1a1a2e">G</text>
+              <text x="12" y="14" font-family="Arial,sans-serif" font-size="12" fill="#1a1a2e">Pay</text>
+            </svg>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
       <span>Terms of Use</span>
       <span class="sep">|</span>
@@ -372,30 +367,35 @@
       slider.style.setProperty('--fill', pct + '%');
     }
 
+    function getNumericPrice() {
+      return Math.max(3, Math.floor(Number(priceInput.value.replace(/[^0-9]/g, '')) || 3));
+    }
+
     slider.addEventListener('input', () => {
-      priceInput.value = slider.value;
+      priceInput.value = '$' + slider.value;
       priceText.textContent = Number(slider.value).toFixed(2);
       syncSliderFill();
     });
 
-    priceInput.addEventListener('input', () => {
-      const v = Math.max(3, Math.floor(Number(priceInput.value) || 3));
-      slider.value = Math.min(v, 50);
-      priceText.textContent = v.toFixed(2);
-      syncSliderFill();
+    priceInput.addEventListener('focus', () => {
+      const num = getNumericPrice();
+      priceInput.value = num;
+      priceInput.select();
     });
 
     priceInput.addEventListener('blur', () => {
-      if (priceInput.value < 3) priceInput.value = 3;
-      priceText.textContent = Number(priceInput.value).toFixed(2);
+      const v = getNumericPrice();
+      priceInput.value = '$' + v;
+      slider.value = Math.min(v, 50);
+      priceText.textContent = v.toFixed(2);
+      syncSliderFill();
     });
 
     syncSliderFill();
 
     async function checkout() {
       const btn = document.getElementById('payBtn');
-      const amount = Math.max(3, Math.floor(Number(priceInput.value) || 3));
-      priceInput.value = amount;
+      const amount = getNumericPrice();
 
       btn.disabled = true;
       btn.innerHTML = 'Loading\u2026';
