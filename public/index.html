@@ -6,180 +6,399 @@
   <title>TATRAN — Evermore Album Launch (Live at Barby)</title>
   <meta name="description" content="Watch the full Tatran concert — Evermore Album Launch, live at Barby Tel Aviv, July 4th 2024">
   <meta property="og:title" content="TATRAN — Evermore Album Launch (Live at Barby)">
-  <meta property="og:description" content="Watch the full concert. Pay what you want ($3 minimum).">
-  <meta property="og:image" content="/poster.webp">
+  <meta property="og:description" content="Watch the full concert film. Pay what you want ($3 minimum).">
+  <meta property="og:image" content="/poster.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #d1c4b2;
+      background: #b8ab99;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
       font-family: 'Space Grotesk', sans-serif;
       color: #1a1a2e;
+      padding: 0;
     }
 
-    .container {
+    .page {
       width: 100%;
-      max-width: 600px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .poster-wrap {
-      width: 100%;
+      max-width: 780px;
+      background-color: #d1c4b2;
+      background-image: url('/texture-tile.jpg');
+      background-size: cover;
+      background-blend-mode: multiply;
+      min-height: 100vh;
       position: relative;
+      padding: 0 0 12px;
     }
 
-    .poster-wrap img {
+    /* ==================== POSTER ==================== */
+    .poster-wrap {
+      position: relative;
+      padding: 24px 24px 0;
+    }
+
+    .poster-img {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    .cta-section {
-      width: 100%;
-      max-width: 600px;
-      padding: 28px 24px 48px;
+    /* YouTube-style play button */
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68px;
+      height: 48px;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .play-btn::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 0 10px 18px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 3px;
+    }
+
+    /* ==================== CTA CARD ==================== */
+    .cta-outer {
+      margin: 12px 24px 0;
+      padding: 3px;
+      background: linear-gradient(
+        135deg,
+        rgba(135, 160, 220, 0.8) 0%,
+        rgba(200, 140, 200, 0.7) 18%,
+        rgba(255, 180, 120, 0.6) 35%,
+        rgba(135, 180, 230, 0.7) 52%,
+        rgba(200, 120, 180, 0.8) 70%,
+        rgba(140, 200, 230, 0.7) 88%,
+        rgba(135, 160, 220, 0.8) 100%
+      );
+      background-size: 400% 400%;
+      animation: shimmer 8s ease infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .cta-card {
+      background-color: #d1c4b2;
+      background-image: url('/texture-tile.jpg');
+      background-size: cover;
+      background-blend-mode: multiply;
+      padding: 32px 32px 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    /* Left column */
+    .cta-left {}
+
+    .cta-heading {
+      font-family: 'Bebas Neue', 'Space Grotesk', sans-serif;
+      font-size: 42px;
+      font-weight: 400;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: #f25c45;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+    }
+
+    .cta-desc {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      color: #1a1a2e;
+    }
+
+    /* Right column */
+    .cta-right {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      background: #d1c4b2;
+      gap: 12px;
     }
 
-    .cta-title {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+    .price-label {
+      font-size: 13px;
+      font-weight: 700;
       text-transform: uppercase;
-      text-align: center;
-      color: #2a2a3e;
-      opacity: 0.8;
+      color: #1a1a2e;
     }
 
-    .price-row {
+    .price-label .note {
+      font-weight: 400;
+      font-size: 11px;
+      opacity: 0.5;
+    }
+
+    /* Slider */
+    .slider-row {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .price-input-wrap {
+    .price-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 5px;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, #2a2a3e var(--fill, 0%), #a89e90 var(--fill, 0%));
+    }
+
+    .price-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #d1c4b2;
+      border: 2px solid #2a2a3e;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .price-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      background: #d1c4b2;
+      border: 2px solid #2a2a3e;
+      border-radius: 50%;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .price-box {
+      width: 50px;
+      height: 34px;
+      border: 2px solid #2a2a3e;
+      border-radius: 0;
       display: flex;
       align-items: center;
-      background: rgba(0,0,0,0.08);
-      border-radius: 8px;
-      padding: 0 14px;
-      height: 48px;
-      font-size: 22px;
-      font-weight: 700;
-      color: #1a1a2e;
-    }
-
-    .price-input-wrap span {
-      margin-right: 4px;
-      opacity: 0.5;
-    }
-
-    .price-input {
-      width: 60px;
-      background: none;
-      border: none;
-      font-size: 22px;
-      font-weight: 700;
-      font-family: inherit;
-      color: #1a1a2e;
-      outline: none;
-      text-align: center;
-    }
-
-    .price-input::-webkit-inner-spin-button,
-    .price-input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-    }
-
-    .pay-btn {
-      display: inline-flex;
-      align-items: center;
       justify-content: center;
-      height: 52px;
-      padding: 0 36px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a2e;
+      background: transparent;
+      font-family: inherit;
+      text-align: center;
+      outline: none;
+    }
+
+    .price-box::-webkit-inner-spin-button,
+    .price-box::-webkit-outer-spin-button { -webkit-appearance: none; }
+    .price-box { -moz-appearance: textfield; }
+
+    /* CTA Button */
+    .cta-btn {
+      width: 100%;
+      padding: 16px 12px;
+      background: transparent;
+      border: 2.5px solid #f25c45;
+      color: #f25c45;
+      font-family: 'Bebas Neue', 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1.2;
+    }
+
+    .cta-btn:hover {
       background: #f25c45;
       color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
     }
 
-    .pay-btn:hover {
-      background: #e04a33;
-    }
-
-    .pay-btn:active {
+    .cta-btn:active {
       transform: scale(0.97);
     }
 
-    .pay-btn:disabled {
-      opacity: 0.6;
+    .cta-btn:disabled {
+      opacity: 0.5;
       cursor: not-allowed;
     }
 
-    .fine-print {
+    .support-text {
       font-size: 12px;
-      opacity: 0.45;
-      text-align: center;
-      line-height: 1.5;
+      color: #1a1a2e;
+      opacity: 0.5;
     }
 
-    @media (max-width: 640px) {
-      .cta-section {
-        padding: 24px 20px 40px;
+    /* Payment icons row */
+    .pay-methods {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 2px;
+    }
+
+    .pay-methods span {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.35;
+      letter-spacing: 0.03em;
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      padding: 20px 24px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #1a1a2e;
+      opacity: 0.35;
+    }
+
+    .footer .sep { opacity: 0.5; }
+
+    /* ==================== MOBILE ==================== */
+    @media (max-width: 580px) {
+      .poster-wrap { padding: 16px 16px 0; }
+
+      .cta-outer { margin: 8px 16px 0; }
+
+      .cta-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 24px 22px 22px;
       }
+
+      .cta-heading { font-size: 36px; }
+
+      .footer { font-size: 10px; gap: 6px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
+
+    <!-- Poster with play button -->
     <div class="poster-wrap">
-      <img src="/poster.webp" alt="TATRAN — Evermore Album Launch, Live at Barby Tel Aviv, July 4th 2024" />
+      <img class="poster-img" src="/poster.jpg" alt="TATRAN — Evermore Album Launch, Live at Barby Tel Aviv, July 4th 2024" />
+      <div class="play-btn"></div>
     </div>
 
-    <div class="cta-section">
-      <div class="cta-title">Watch the full concert</div>
+    <!-- CTA Card -->
+    <div class="cta-outer">
+      <div class="cta-card">
 
-      <div class="price-row">
-        <div class="price-input-wrap">
-          <span>$</span>
-          <input type="number" class="price-input" id="price" value="3" min="3" step="1">
+        <!-- Left: heading + description -->
+        <div class="cta-left">
+          <div class="cta-heading">Full Concert<br>Film Access</div>
+          <div class="cta-desc">
+            Stream the entire legendary live performance. A high-definition audio-visual experience.<br>
+            Pay $3 or more to access instantly.
+          </div>
         </div>
-        <button class="pay-btn" id="payBtn" onclick="checkout()">Watch Now</button>
-      </div>
 
-      <div class="fine-print">$3 minimum &middot; Secure payment via Stripe</div>
+        <!-- Right: price + slider + button -->
+        <div class="cta-right">
+          <div class="price-label">Price: $<span id="priceText">3.00</span> USD <span class="note">(Pay More Option Below)</span></div>
+
+          <div class="slider-row">
+            <input type="range" class="price-slider" id="priceSlider" min="3" max="50" value="3" step="1">
+            <input type="number" class="price-box" id="priceInput" value="3" min="3">
+          </div>
+
+          <button class="cta-btn" id="payBtn" onclick="checkout()">
+            Secure Full Access<br>(From $3)
+          </button>
+
+          <div class="support-text">Pay $3 or more to support the band.</div>
+
+          <div class="pay-methods">
+            <span>VISA</span>
+            <span>Mastercard</span>
+            <span>Apple Pay</span>
+            <span>G Pay</span>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span>Terms of Use</span>
+      <span class="sep">|</span>
+      <span>Privacy Policy</span>
+      <span class="sep">|</span>
+      <span>Copyright TATRAN 2024</span>
+    </div>
+
   </div>
 
   <script>
+    const slider = document.getElementById('priceSlider');
+    const priceInput = document.getElementById('priceInput');
+    const priceText = document.getElementById('priceText');
+
+    function syncSliderFill() {
+      const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+      slider.style.setProperty('--fill', pct + '%');
+    }
+
+    slider.addEventListener('input', () => {
+      priceInput.value = slider.value;
+      priceText.textContent = Number(slider.value).toFixed(2);
+      syncSliderFill();
+    });
+
+    priceInput.addEventListener('input', () => {
+      const v = Math.max(3, Math.floor(Number(priceInput.value) || 3));
+      slider.value = Math.min(v, 50);
+      priceText.textContent = v.toFixed(2);
+      syncSliderFill();
+    });
+
+    priceInput.addEventListener('blur', () => {
+      if (priceInput.value < 3) priceInput.value = 3;
+      priceText.textContent = Number(priceInput.value).toFixed(2);
+    });
+
+    syncSliderFill();
+
     async function checkout() {
       const btn = document.getElementById('payBtn');
-      const priceInput = document.getElementById('price');
-      const amount = Math.max(3, Math.floor(Number(priceInput.value)));
+      const amount = Math.max(3, Math.floor(Number(priceInput.value) || 3));
       priceInput.value = amount;
 
       btn.disabled = true;
-      btn.textContent = 'Loading...';
+      btn.innerHTML = 'Loading\u2026';
 
       try {
         const res = await fetch('/api/create-checkout', {
@@ -193,20 +412,19 @@
           window.location.href = data.url;
         } else {
           alert(data.error || 'Something went wrong');
-          btn.disabled = false;
-          btn.textContent = 'Watch Now';
+          resetBtn();
         }
-      } catch (err) {
+      } catch {
         alert('Connection error. Please try again.');
-        btn.disabled = false;
-        btn.textContent = 'Watch Now';
+        resetBtn();
       }
     }
 
-    // Enforce minimum on blur
-    document.getElementById('price').addEventListener('blur', function() {
-      if (this.value < 3) this.value = 3;
-    });
+    function resetBtn() {
+      const btn = document.getElementById('payBtn');
+      btn.disabled = false;
+      btn.innerHTML = 'Secure Full Access<br>(From $3)';
+    }
   </script>
 </body>
 </html>
