@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TATRAN — Evermore Album Launch (Live at Barby)</title>
+  <meta name="description" content="Watch the full Tatran concert — Evermore Album Launch, live at Barby Tel Aviv, July 4th 2024">
+  <meta property="og:title" content="TATRAN — Evermore Album Launch (Live at Barby)">
+  <meta property="og:description" content="Watch the full concert. Pay what you want ($3 minimum).">
+  <meta property="og:image" content="/poster.webp">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #d1c4b2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #1a1a2e;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .poster-wrap {
+      width: 100%;
+      position: relative;
+    }
+
+    .poster-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cta-section {
+      width: 100%;
+      max-width: 600px;
+      padding: 28px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      background: #d1c4b2;
+    }
+
+    .cta-title {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      color: #2a2a3e;
+      opacity: 0.8;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .price-input-wrap {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.08);
+      border-radius: 8px;
+      padding: 0 14px;
+      height: 48px;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .price-input-wrap span {
+      margin-right: 4px;
+      opacity: 0.5;
+    }
+
+    .price-input {
+      width: 60px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: inherit;
+      color: #1a1a2e;
+      outline: none;
+      text-align: center;
+    }
+
+    .price-input::-webkit-inner-spin-button,
+    .price-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .pay-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 36px;
+      background: #f25c45;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .pay-btn:hover {
+      background: #e04a33;
+    }
+
+    .pay-btn:active {
+      transform: scale(0.97);
+    }
+
+    .pay-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .fine-print {
+      font-size: 12px;
+      opacity: 0.45;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .cta-section {
+        padding: 24px 20px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="poster-wrap">
+      <img src="/poster.webp" alt="TATRAN — Evermore Album Launch, Live at Barby Tel Aviv, July 4th 2024" />
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-title">Watch the full concert</div>
+
+      <div class="price-row">
+        <div class="price-input-wrap">
+          <span>$</span>
+          <input type="number" class="price-input" id="price" value="3" min="3" step="1">
+        </div>
+        <button class="pay-btn" id="payBtn" onclick="checkout()">Watch Now</button>
+      </div>
+
+      <div class="fine-print">$3 minimum &middot; Secure payment via Stripe</div>
+    </div>
+  </div>
+
+  <script>
+    async function checkout() {
+      const btn = document.getElementById('payBtn');
+      const priceInput = document.getElementById('price');
+      const amount = Math.max(3, Math.floor(Number(priceInput.value)));
+      priceInput.value = amount;
+
+      btn.disabled = true;
+      btn.textContent = 'Loading...';
+
+      try {
+        const res = await fetch('/api/create-checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount })
+        });
+        const data = await res.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert(data.error || 'Something went wrong');
+          btn.disabled = false;
+          btn.textContent = 'Watch Now';
+        }
+      } catch (err) {
+        alert('Connection error. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Watch Now';
+      }
+    }
+
+    // Enforce minimum on blur
+    document.getElementById('price').addEventListener('blur', function() {
+      if (this.value < 3) this.value = 3;
+    });
+  </script>
+</body>
+</html>

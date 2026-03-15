@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TATRAN — Evermore (Live at Barby)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #d1c4b2;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .loading p {
+      font-size: 14px;
+      opacity: 0.5;
+      margin-top: 12px;
+    }
+
+    .denied {
+      text-align: center;
+      padding: 40px 24px;
+      max-width: 400px;
+    }
+
+    .denied h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #f25c45;
+    }
+
+    .denied p {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .denied a {
+      color: #f25c45;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .player-container {
+      display: none;
+      width: 100%;
+      max-width: 960px;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      gap: 20px;
+    }
+
+    .video-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-title {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      text-align: center;
+    }
+
+    .logo-small {
+      height: 28px;
+      opacity: 0.3;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="loading" id="loadingState">
+    <div style="font-size: 24px;">&#9834;</div>
+    <p>Verifying your access...</p>
+  </div>
+
+  <div class="denied" id="deniedState" style="display:none;">
+    <h2>Access Required</h2>
+    <p>You need to purchase access to watch this concert.</p>
+    <a href="/">&#8592; Go back &amp; get access</a>
+  </div>
+
+  <div class="player-container" id="playerState">
+    <div class="video-wrap">
+      <iframe
+        id="videoFrame"
+        src=""
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-title">TATRAN &mdash; Evermore Album Launch &middot; Live at Barby Tel Aviv &middot; July 4th, 2024</div>
+    <img src="/logo.png" alt="TATRAN" class="logo-small">
+  </div>
+
+  <script>
+    (async function() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+
+      if (!sessionId) {
+        showDenied();
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/verify-session?session_id=' + encodeURIComponent(sessionId));
+        const data = await res.json();
+
+        if (data.access) {
+          showPlayer();
+        } else {
+          showDenied();
+        }
+      } catch (err) {
+        showDenied();
+      }
+    })();
+
+    function showPlayer() {
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('playerState').style.display = 'flex';
+      document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/XAaiwBxl3Zc?autoplay=1&rel=0';
+    }
+
+    function showDenied() {
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('deniedState').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
